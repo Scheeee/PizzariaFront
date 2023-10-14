@@ -9,14 +9,15 @@ import { Pedidos } from '../models/pedidos';
   })
 export class PedidosService { 
 
-    API: string = 'http://localhost:8081/api/pedido';
+    API: string = 'http://localhost:8080/pizzaria/pedido';
     http = inject(HttpClient);
 
 
     constructor(){}
 
     listAll(): Observable<Pedidos[]> {
-        return this.http.get<Pedidos[]>(this.API);
+      const list = `${this.API}/ativos`;
+        return this.http.get<Pedidos[]>(list);
       }
     
       save(pedidos: Pedidos): Observable<Pedidos> {

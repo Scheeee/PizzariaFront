@@ -8,7 +8,7 @@ import { Endereco } from '../models/endereco';
 })
 export class EnderecoService{
 
-  API: string = 'http://localhost:8081/api/endereco';
+  API: string = 'http://localhost:8081/pizzaria/endereco';
   http = inject(HttpClient);
 
   constructor() { }

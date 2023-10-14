@@ -7,7 +7,7 @@ import { Clientes } from '../models/clientes';
     providedIn: 'root'
 })
 export class ClientesService {
-    API: string = 'http://localhost:8080/api/cliente';
+    API: string = 'http://localhost:8080/pizzaria/cliente';
   http = inject(HttpClient);
 
   constructor(){}
