@@ -37,4 +37,38 @@ export class ClientesListComponent {
       }
     })
   }
+
+  adicionar(modal: any) {
+    this.clienteEdicao = new Clientes();
+
+    this.modalService.open(modal, { size: 'sm' });
+  }
+
+  editar(modal: any, cliente: Clientes, indice: number) {
+    this.clienteEdicao = Object.assign({}, cliente); 
+    this.indiceEdicao = indice;
+
+    this.modalService.open(modal, { size: 'sm' });
+  }
+
+  deletar(id: number) {
+
+    this.clientesService.delete(id).subscribe({
+      next: lista => { // QUANDO DÁ CERTO
+        alert('deletado com sucesso!');
+        this.listAll();
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+
+  }
+  addList(cliente: Clientes) {
+
+    this.listAll();
+    this.modalService.dismissAll();
+
+  }
 }

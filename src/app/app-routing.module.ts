@@ -5,6 +5,7 @@ import { IndexComponent } from './layout/index/index.component';
 import { ClientesListComponent } from './clientes/clientes-list/clientes-list.component';
 import { PedidosListComponent } from './pedidos/pedidos-list/pedidos-list.component';
 import { PizzasListComponent } from './pizzas/pizzas-list/pizzas-list.component';
+import { TotaisComponent } from './totais/totais.component';
 
 const routes: Routes = [
 {path:"", redirectTo: "login", pathMatch: 'full'},
@@ -12,8 +13,18 @@ const routes: Routes = [
 {path: "pizzaria", component: IndexComponent, children:[
   {path:"clientes", component: ClientesListComponent},
   {path: "pedidos", component: PedidosListComponent},
-  {path: "pizzas", component: PizzasListComponent}
-]}
+  {path: "pizzas", component: PizzasListComponent},
+  {path: "totais", component: TotaisComponent}
+  
+]},
+{
+  path:"adm", component: IndexComponent, children:[
+    {path:"clientes", component: ClientesListComponent},
+    {path: "pedidos", component: PedidosListComponent},
+    {path: "pizzas", component: PizzasListComponent},
+    {path: "totais", component: TotaisComponent}
+  ]
+}
 
 ];
 

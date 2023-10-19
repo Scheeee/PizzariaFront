@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { PedidosListComponent } from './pedidos/pedidos-list/pedidos-list.compon
 import { ClientesListComponent } from './clientes/clientes-list/clientes-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { TotaisComponent } from './totais/totais.component';
+import { ClientesDetailsComponent } from './clientes/clientes-details/clientes-details.component';
 
 
 
@@ -26,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     PizzasListComponent,
     PedidosListComponent,
     ClientesListComponent,
+    TotaisComponent,
+    ClientesDetailsComponent,
   
     
   ],
@@ -33,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule, 
     NgbModule, FormsModule, 
-    HttpClientModule
+    HttpClientModule, DatePipe
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

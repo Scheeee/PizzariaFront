@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="login">
+    <div >
+      
+      <div class ="d-flex flex-column mb-3">
+        <h1 class="d-flex justify-content-center"> Login</h1>
+        <div class="p-2  ">
+          <label for="formGroupExampleInput" class="form-label">usuario</label>
+          <input type="text" [(ngModel)]="atendente.nome" class="form-control" id="nome" name="nome" placeholder="atendente">
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-primary" (click)="logar()">cadastrar</button>
+        </div>
+        
+       </div>
+    
+    </div>
+    </div>

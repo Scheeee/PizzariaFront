@@ -17,8 +17,8 @@ export class ClientesService {
     return this.http.get<Clientes[]>(list);
   }
 
-  save(cliente: Clientes): Observable<Clientes> {
-    return this.http.post<Clientes>(this.API, cliente);
+  save(cliente: Clientes): Observable<any> {
+    return this.http.post<any>(this.API, cliente);
   }
   
   delete(id: number): Observable<any> {

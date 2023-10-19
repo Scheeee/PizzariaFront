@@ -15,13 +15,17 @@ export class PedidosService {
 
     constructor(){}
 
-    listAll(): Observable<Pedidos[]> {
+      listAll(): Observable<Pedidos[]> {
       const list = `${this.API}/ativos`;
         return this.http.get<Pedidos[]>(list);
       }
     
       save(pedidos: Pedidos): Observable<Pedidos> {
         return this.http.post<Pedidos>(this.API, pedidos);
+      }
+      totais(data: string): Observable<String>{
+        const rota = `${this.API}/data/${data}`;
+        return this.http.get<any>(rota);
       }
       
       delete(id: number): Observable<any> {
