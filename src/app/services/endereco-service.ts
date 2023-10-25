@@ -8,26 +8,28 @@ import { Endereco } from '../models/endereco';
 })
 export class EnderecoService{
 
-  API: string = 'http://localhost:8081/pizzaria/endereco';
+  API: string = 'http://localhost:8080/pizzaria/endereco';
   http = inject(HttpClient);
 
   constructor() { }
 
 
   listAll(): Observable<Endereco[]> {
-    return this.http.get<Endereco[]>(this.API);
+    const list = `${this.API}/lista`;
+    return this.http.get<Endereco[]>(list);
   }
 
-  save(endereco: Endereco): Observable<Endereco> {
-    return this.http.post<Endereco>(this.API, endereco);
+  save(endereco: Endereco): Observable<any> {
+    return this.http.post<any>(this.API, endereco);
   }
-  
+  update(id: Number, endereco: Endereco) : Observable<any>{
+    const list = `${this.API}/${id}`;
+    return this.http.put<any>(list, endereco);
+  }
   delete(id: number): Observable<any> {
 
-    let params =new HttpParams()
-    .set('id', id.toString());
-
-    return this.http.delete<any>(this.API, {params: params});
+    const list = `${this.API}/${id}`;
+    return this.http.delete<any>(list);
   }
 
 }

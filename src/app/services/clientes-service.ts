@@ -12,8 +12,12 @@ export class ClientesService {
 
   constructor(){}
 
-  listAll(): Observable<Clientes[]> {
+   listAll(): Observable<Clientes[]> {
     const list = `${this.API}/lista`;
+    return this.http.get<Clientes[]>(list);
+  }
+  listNome(nome: string): Observable<Clientes[]> {
+    const list = `${this.API}/${nome}`;
     return this.http.get<Clientes[]>(list);
   }
 
@@ -21,11 +25,14 @@ export class ClientesService {
     return this.http.post<any>(this.API, cliente);
   }
   
+  update(id: Number, cliente: Clientes) : Observable<any>{
+    const list = `${this.API}/${id}`;
+    return this.http.put<any>(list, cliente);
+  }
+      
   delete(id: number): Observable<any> {
 
-    let params =new HttpParams()
-    .set('id', id.toString());
-
-    return this.http.delete<any>(this.API, {params: params});
+    const list = `${this.API}/${id}`;
+    return this.http.delete<any>(list);
   }
 }

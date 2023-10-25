@@ -1,0 +1,67 @@
+<div class="borda">
+    <div class="linha">
+        <h1>Listagem de Clientes</h1>
+        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(clienteModal)"  >adicionar pessoa</button>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="nome" placeholder="insira um nome" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" (click)="listNome()" id="button-addon2">Pesquisar</button>
+    </div>
+        <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
+        <thead> 
+            <tr>
+                <th>#ID</th>
+                <th>Nome:</th>
+                <th>Telefone:</th>
+            
+                <th>Opções:</th>
+            
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor = "let cliente of lista; let i = index">
+                
+                <th scope="row">{{ cliente.id }}</th>
+                <th>{{ cliente.nome }}</th>
+                <th>{{cliente.telefone }}</th>
+            
+                <th *ngIf="!modoAdd"><button class="btn btn-outline-warning" (click)="editar(clienteModal2, cliente, i)">editar</button><button class="btn btn-outline-danger" (click)="deletar(cliente.id)">deletar</button>
+
+
+                <td *ngIf="modoAdd" > <button type="button" class="btn btn-primary" (click)="lancamento(cliente)">Lançar</button> </td>
+                    
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
+
+
+<ng-template #clienteModal let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de cliente</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-clientes-details [cliente]="clienteEdicao" [modoEdit]="false" (retorno)="addList($event)" ></app-clientes-details>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
+<ng-template #clienteModal2 let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de cliente</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-clientes-details [cliente]="clienteEdicao" [modoEdit]="true" (retorno)="addList($event)" ></app-clientes-details>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>

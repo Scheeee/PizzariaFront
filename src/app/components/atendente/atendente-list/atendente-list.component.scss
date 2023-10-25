@@ -1,0 +1,28 @@
+.lista{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+h1{  
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+#btn{
+    padding-bottom: 1%;
+    align-items:end;
+ }
+.borda{
+    padding-left: 5%;
+    padding-right: 5%;
+    
+ }
+ .linha{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 0;
+}

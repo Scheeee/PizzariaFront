@@ -1,0 +1,13 @@
+<div class="row d-flex justify-content-center  ">
+    <div d-flex flex-column mb-3>
+      <div class="p-2  ">
+        <label for="formGroupExampleInput" class="form-label">Nome</label>
+        <input type="text" [(ngModel)]="atendente.nome" class="form-control"  name="name" placeholder="Scheligan">
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary" *ngIf="modoEdit == false"(click)="salvar()">cadastrar</button>
+        <button type="submit" class="btn btn-primary" *ngIf="modoEdit == true" (click)="editar()">editar</button>
+      </div>
+    </div>
+
+  </div>

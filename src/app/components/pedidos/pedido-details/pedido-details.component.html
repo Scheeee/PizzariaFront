@@ -1,0 +1,188 @@
+<form >
+    
+    <div class="mb-3" id="inputObs">
+        <label for="exampleInputText1" class="form-label">Observações:</label>
+        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="pedido.detalhes">
+    </div>
+    <div class="linha">
+   
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="entrega" (click)="checkboxEntrega()"   >
+            <label class="form-check-label" for="inlineCheckbox1">Entrega</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="dinheiro"  (click)="checkboxDinheiro()"  >
+            <label class="form-check-label" for="inlineCheckbox2">Dinheiro</label>
+        </div>
+    </div>
+    <div class="btn">
+    <button type="button" class="btn btn-outline-primary" (click)="lancar(modal1)">adicionar pizza</button> 
+    <button type="button" class="btn btn-outline-primary" (click)="lancar(modalProduto)">adicionar produto</button> 
+    <button type="button" class="btn btn-outline-primary" (click)="lancar(modal2)">inserir cliente</button>
+    <button type="button" class="btn btn-outline-primary" (click)="lancar(modal3)">inserir atendente</button>
+    </div>
+    <p *ngIf = "pedido.atendente != null">Atendente: {{pedido.atendente.nome}}</p>
+    <p *ngIf = "pedido.cliente != null">Cliente:</p>
+    <table *ngIf = "pedido.cliente != null" class="table table-striped">
+        
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <th scope="row">{{ pedido.cliente.id }}</th>
+                <td> {{ pedido.cliente.nome }} </td>
+                <td> {{ pedido.cliente.telefone }} </td>
+                <td *ngIf="pedido.cliente.endereco != null"> {{ pedido.cliente.endereco.rua }} </td>
+                <td> 
+                    <button type="button" class="btn btn-primary" (click)="lancar(modal2)">Alterar cliente</button>
+                    <button type="button" class="btn btn-primary" *ngIf="pedido.cliente.endereco == null" (click)="lancarEndereco(modal4)">inserir endereço</button>
+                    <button type="button" class="btn btn-primary" *ngIf="pedido.cliente.endereco != null" (click)="editarEndereco(modal5,pedido.cliente.endereco)">editar endereço</button>
+                </td>
+            </tr>   
+        </tbody>
+    </table>
+    <p *ngIf="pedido.pizzas.length !== 0 || pedido.produtos.length > 0">Produtos:</p> 
+    <table class="table table-striped" *ngIf="pedido.pizzas.length !== 0 || pedido.produtos.length > 0" >
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr *ngFor="let pizza of pedido.pizzas; let i = index">
+                <th scope="row">{{ pizza.id }}</th>
+                <th scope="row">{{ pizza.tamanho }}</th>
+                <td>
+                    <span *ngFor="let sabor of pizza.sabores; let j = index">
+                    {{ sabor.nome }}
+                    <ng-container *ngIf="j !== pizza.sabores.length - 1">, </ng-container>
+                    </span>
+                </td>
+                <th scope="row">{{ pizza.valorUnit }}</th>
+                <td> <button type="button" class="btn btn-primary" (click)="excluir(pizza,i)">Excluir</button> </td>
+            </tr>
+        </tbody>
+        <tbody>
+            
+            <tr *ngFor="let produto of pedido.produtos; let i = index">
+                <th scope="row">{{ produto.id }}</th>
+                <th scope="row">{{ produto.nome }}</th>
+                <th scope="row">{{ produto.detalhes }}</th>
+                <th scope="row">{{ produto.valorUnit }}</th>
+                <td> <button type="button" class="btn btn-primary" (click)="excluirProduto(produto,i)">Excluir</button> </td>
+            </tr>
+        </tbody>
+        <div>SubTotal: R${{pedido.valorTotal}}</div>
+    </table>
+    
+
+
+    <button type="submit" class="btn btn-success" *ngIf="modoEdit == false" (click)="salvar()">Salvar</button>
+    <button type="submit" class="btn btn-success" *ngIf="modoEdit == true" (click)="editar()">Editar</button>
+</form>
+
+
+
+
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Pizzas</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-pizzas-list [modoLancamento]="true" (retorno)="retornoPizzaList($event)" ></app-pizzas-list>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #modal2 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Cliente</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-clientes-list [modoAdd]="true" (retorno)="retornoClienteList($event)" ></app-clientes-list>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #modal3 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Atendente</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-atendente-list [modoAdd]="true" (retorno)="retornoAtendenteList($event)" ></app-atendente-list>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #modal4 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Endereço</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-endereco-details [cliente]="pedido.cliente" [endereco]="enderecoEdit" [modoEdit]="false" (retorno)="retornoEndereco($event)"></app-endereco-details>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #modal5 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Endereço</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-endereco-details [cliente]="pedido.cliente" [endereco]="enderecoEdit" [modoEdit]="true" (retorno)="retornoEndereco($event)"></app-endereco-details>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #modalProduto let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Produtos</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-produtos-list [modoLancamento]="true" (retorno)="retornoProdutoList($event)" ></app-produtos-list>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+
+

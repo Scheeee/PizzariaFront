@@ -1,0 +1,52 @@
+
+<div class="borda">
+    <h1>TOTAIS</h1>
+    <input type="date" [(ngModel)]="dataSelecionada" (change)="formatDate()">
+    <p>Data Selecionada: {{ dataSelecionada }}</p>
+    <table class="table table-bordered table-hover">
+        <thead> 
+            <tr>
+                <th>Total:</th>
+                <th>Valor:</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            
+            <tr>
+                <th scope="row">Pedidos do Dia</th>  
+                <td>{{ total.pedidosDoDia }}</td>
+               
+            </tr>
+            <tr>
+                <th scope="row">Pedidos Encerrados</th>  
+                <td>{{total.pedidosEncerrados  }}</td>
+                
+            </tr> 
+            <tr>
+                <th scope="row">Pedidos Cancelados</th>
+                <td>{{total.pedidosCancelados  }}</td>           
+            </tr>
+            <tr>
+                <th scope="row">Pedidos Entregues</th>
+                <td>{{total.pedidosEntregues  }}</td>           
+            </tr>
+            <tr>
+                <th scope="row">Pedidos Retirados</th>
+                <td>{{total.pedidosRetirados  }}</td>           
+            </tr>
+            <tr>
+                <th scope="row">Pedidos Dinheiro</th>
+                <td>{{total.pedidosDinheiro  }}</td>           
+            </tr>
+            <tr>
+                <th scope="row">Pedidos Cartão</th>
+                <td>{{total.pedidosCartao  }}</td>           
+            </tr>
+            <tr>
+                <th scope="row">Valor total dos pedidos</th>
+                <td>R${{total.totalValorPedidos}}</td>           
+            </tr>
+        </tbody>
+        
+    </table>
+</div>

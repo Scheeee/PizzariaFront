@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { IndexComponent } from './layout/index/index.component';
-import { ClientesListComponent } from './clientes/clientes-list/clientes-list.component';
-import { PedidosListComponent } from './pedidos/pedidos-list/pedidos-list.component';
-import { PizzasListComponent } from './pizzas/pizzas-list/pizzas-list.component';
-import { TotaisComponent } from './totais/totais.component';
+import { LoginComponent } from './components/login/login.component';
+import { IndexComponent } from './components/layout/index/index.component';
+import { ClientesListComponent } from './components/clientes/clientes-list/clientes-list.component';
+import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
+import { PizzasListComponent } from './components/pizzas/pizzas-list/pizzas-list.component';
+import { TotaisComponent } from './components/totais/totais.component';
+import { AtendenteListComponent } from './components/atendente/atendente-list/atendente-list.component';
+import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
+import { ProdutosListComponent } from './components/produtos/produtos-list/produtos-list.component';
+
+import { PedidoDetailsComponent } from './components/pedidos/pedido-details/pedido-details.component';
 
 const routes: Routes = [
 {path:"", redirectTo: "login", pathMatch: 'full'},
@@ -14,18 +19,13 @@ const routes: Routes = [
   {path:"clientes", component: ClientesListComponent},
   {path: "pedidos", component: PedidosListComponent},
   {path: "pizzas", component: PizzasListComponent},
-  {path: "totais", component: TotaisComponent}
+  {path: "total", component: TotaisComponent},
+  {path: "atendente", component: AtendenteListComponent},
+  {path: "endereco", component: EnderecoListComponent}, 
+  {path: "produto", component: ProdutosListComponent},
+  {path: "arrumarPedido", component: PedidoDetailsComponent}
   
-]},
-{
-  path:"adm", component: IndexComponent, children:[
-    {path:"clientes", component: ClientesListComponent},
-    {path: "pedidos", component: PedidosListComponent},
-    {path: "pizzas", component: PizzasListComponent},
-    {path: "totais", component: TotaisComponent}
-  ]
-}
-
+]}
 ];
 
 @NgModule({

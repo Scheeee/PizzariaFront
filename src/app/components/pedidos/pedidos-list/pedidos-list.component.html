@@ -1,0 +1,83 @@
+<div class="borda">
+    <div class="linha">
+        <h1>Lista de pedidos</h1>
+        <button id="btn" type="button"class="btn btn-success btn-lg " (click)="adicionar(modal1)"  >adicionar pedido</button>
+    </div>
+    <select class="form-select form-select-lg mb-3" aria-label="Large select example" (change)="onChange($event)">
+        <option value="2" selected> Todos os Pedidos</option>
+        <option value="1">Pedidos Ativos</option>
+        <option value="3">Pedidos Finalizados</option>
+        <option value="4">Pedidos Cancelados</option>
+    </select>
+
+    <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
+        <thead> 
+            <tr>
+                <th>#ID</th>
+                <th>Cliente</th>
+                <th>Status</th>
+                <th>Detalhes:</th>
+                <th>Entrega</th>
+                <th>Dinheiro</th>
+                <th>Quantidade:</th>
+                <th>Total</th>
+                <th>Opções:</th>
+            
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor = "let pedidos of lista; let i = index">
+                
+                <th scope="row">{{ pedidos.id }}</th>
+                <th>{{pedidos.cliente.nome}}</th>
+                <th>{{pedidos.status}}</th>
+                <th>{{pedidos.detalhes }}</th>
+                <th *ngIf="pedidos.entrega == true">Sim</th>
+                <th *ngIf="pedidos.entrega == false">Não</th>
+                <th *ngIf="pedidos.dinheiro == true">Sim</th>
+                <th *ngIf="pedidos.dinheiro == false">Não</th>
+                <th>{{pedidos.pizzas.length}}</th>
+                <th>{{pedidos.valorTotal}}
+                <th class="btns">
+                    <button class="btn btn-outline-warning btn-sm" (click)="editar(modal2, pedidos, i)">Editar</button>
+                    <button class="btn btn-outline-danger btn-sm" (click)="deletar(pedidos.id)">Deletar</button>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="finalizar(pedidos, pedidos.id)">Finalizar</button>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="comanda(pedidos.id, pedidos.atendente.id)">Gerar comanda</button>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="cancelar(pedidos, pedidos.id)">Cancelar</button>   
+                </th>
+                    
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
+
+
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Pedido</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-pedido-details [pedido]="pedidoEdicao" [modoEdit]="false"  (retorno)="addOuEditarPedido($event)" ></app-pedido-details>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #modal2 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Pedido</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-pedido-details [pedido]="pedidoEdicao" [modoEdit]="true" (retorno)="addOuEditarPedido($event)" ></app-pedido-details>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

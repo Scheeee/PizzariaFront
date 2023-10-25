@@ -8,6 +8,6 @@ describe('PedidosService', () => {
     service = TestBed.inject(PedidosService);
   });
   it('should create an instance', () => {
-    expect(new PedidosService()).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

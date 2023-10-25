@@ -1,0 +1,27 @@
+<div class="borda">
+    <h1>Listagem de endereços</h1>
+<table class="table table-bordered table-hover" *ngIf="lista.length != 0">
+    <thead> 
+        <tr>
+            <th>#ID</th>
+            <th>rua:</th>
+            <th>numero:</th>
+            <th>complemento:</th>
+           
+            <th>Opções:</th>
+        
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr *ngFor = "let endereco of lista; let i = index">
+               
+            <th scope="row">{{ endereco.id }}</th>
+            <th>{{ endereco.rua }}</th>
+            <th>{{endereco.numero }}</th>
+            <th>{{endereco.complemento }}</th>    
+        </tr>
+    </tbody>
+    
+</table>
+<div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center"  >adicionar pessoa</button></div>
+

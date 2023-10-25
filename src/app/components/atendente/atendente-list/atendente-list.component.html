@@ -1,0 +1,68 @@
+<div class="borda">
+    <div class="linha">
+
+        <h1>Listagem de Atendentes</h1>
+        <button id="btn" type="button"class="btn btn-success btn-lg " (click)="adicionar(atedenteModal)"  >adicionar pessoa</button>
+        
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="nome" placeholder="insira um nome" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" (click)="listNome()" id="button-addon2">Pesquisar</button>
+    </div>
+    <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
+        <thead> 
+            <tr>
+                <th>#ID</th>
+                <th>Nome:</th>
+                
+            
+                <th>Opções:</th>
+            
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor = "let atendente of lista; let i = index">
+                
+                <th scope="row">{{ atendente.id }}</th>
+                <th>{{ atendente.nome }}</th>
+            
+            
+                <th *ngIf="!modoAdd"><button class="btn btn-outline-warning" (click)="editar(atedenteModal2, atendente, i)">editar</button>
+                    <button class="btn btn-outline-danger"(click)="deletar(atendente.id)">deletar</button></th>
+                <td *ngIf="modoAdd" > <button type="button" class="btn btn-primary" (click)="lancamento(atendente)">Lançar</button> </td>
+                    
+            </tr>
+        </tbody>
+        
+    </table>
+</div>  
+
+<ng-template #atedenteModal let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de atendente</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-atendente-details  [atendente]="atendenteEdicao" [modoEdit]="false" (retorno)="addList($event)" ></app-atendente-details>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
+
+<ng-template #atedenteModal2 let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Edição de atendente</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-atendente-details  [atendente]="atendenteEdicao" [modoEdit]="true" (retorno)="addList($event)" ></app-atendente-details>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>

@@ -1,0 +1,65 @@
+<div class="borda">
+    <div class="linha">
+        <h1>Listagem de produtos</h1>
+        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(modal1)" >adicionar produto</button>
+    </div>
+
+    <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
+        <thead> 
+            <tr>
+                <th>#ID</th>
+                <th>nome:</th>
+                <th>detalhes:</th>
+                <th>Preço</th>
+                <th>Opções:</th>
+            
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor = "let produtos of lista; let i = index">
+                
+                <th scope="row">{{ produtos.id }}</th>
+                <th scope="row">{{ produtos.nome }}</th>
+                <th scope="row">{{ produtos.detalhes }}</th>
+                <th scope="row">{{ produtos.valorUnit }}</th>
+                        
+                <th *ngIf="!modoLancamento" ><button class="btn btn-outline-warning" (click)="editar(modal2, produtos, i)">editar</button>
+                <button class="btn btn-outline-danger" (click)="deletar(produtos.id)">excluir</button></th>
+
+                <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento(produtos)">Lançar</button> </td>
+                    
+            </tr>
+        </tbody>
+        
+    </table>
+</div>    
+<ng-template #modal1 let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de Produto</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <app-produtos-details [produto]="produtoEdicao"  [modoEdit]="false"  (retorno)="addList($event)"></app-produtos-details>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
+<ng-template #modal2 let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de Produto</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <app-produtos-details [produto]="produtoEdicao"  [modoEdit]="true"  (retorno)="addList($event)"></app-produtos-details>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
+
+
+
+
+
+

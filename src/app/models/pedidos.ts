@@ -1,6 +1,7 @@
 import { Atendente } from "./atendente";
 import { Clientes } from "./clientes";
 import { Pizzas } from "./pizzas";
+import { Produtos } from "./produtos";
 
 export class Pedidos {
 
@@ -8,6 +9,7 @@ export class Pedidos {
     atendente!: Atendente;
     cliente!: Clientes;
     pizzas: Pizzas[] = [];
+    produtos: Produtos[] = [];
     entrega!: boolean;
     detalhes!: string;
     dinheiro!: boolean;
