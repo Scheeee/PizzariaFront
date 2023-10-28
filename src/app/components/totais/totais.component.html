@@ -3,14 +3,14 @@
     <h1>TOTAIS</h1>
     <input type="date" [(ngModel)]="dataSelecionada" (change)="formatDate()">
     <p>Data Selecionada: {{ dataSelecionada }}</p>
-    <table class="table table-bordered table-hover">
-        <thead> 
+    <table class="table table-borderless table-hover">
+        <thead class="top border border-success-subtle"> 
             <tr>
                 <th>Total:</th>
                 <th>Valor:</th>
             </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody class="table-group-divider border border-success-subtle ">
             
             <tr>
                 <th scope="row">Pedidos do Dia</th>  

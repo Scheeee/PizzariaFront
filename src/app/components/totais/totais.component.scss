@@ -22,3 +22,22 @@ h1{
     padding-right: 5%;
     
  }
+
+ table {
+    border-radius: 10px;
+    overflow: hidden; 
+    
+}
+table th, table td {
+    color: #cba49b;
+    border-radius: 10px;
+}
+.btn-custom{
+    background-color: #26681c;
+    color: white; 
+    border-color:#26681c;
+}
+.btn-custom:hover {
+    background-color: #99bd88;
+    border-color: #99bd88; 
+}

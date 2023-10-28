@@ -1,7 +1,7 @@
 .lista{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     
 }
 .linha{
@@ -36,4 +36,38 @@ h1{
     justify-content: start;
     gap: 5px;
 
- }
+}
+.selected{
+    background:#e7ded5;
+    border-radius: 10px;
+    box-shadow:3px 3px 3px rgba(0,0,0,.2);
+    cursor:pointer;
+    margin:0 auto;
+    max-width:225px;
+    padding:1rem;
+    position:relative;
+    width:75%;
+    z-index:3;
+}
+select option:hover {
+    background-color:#695d52;
+    color:#e7ded5;
+}
+table {
+    border-radius: 10px;
+    overflow: hidden; 
+    
+}
+table th, table td {
+    color: #cba49b;
+   
+}
+.btn-custom{
+    background-color: #26681c;
+    color: white; 
+    border-color:#26681c;
+}
+.btn-custom:hover {
+    background-color: #99bd88;
+    border-color: #99bd88; 
+}

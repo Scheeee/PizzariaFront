@@ -13,9 +13,10 @@ export class LoginComponent  {
   roteador = inject(Router);
 
   atendente: Atendente = new Atendente();
+  senha: string = "";
 
   logar(){
-    if(this.atendente.nome == "admin" ){
+    if(this.atendente.nome == "admin" && this.senha == "admin" ){
         this.roteador.navigate(['/pizzaria/pedidos'])
     }else{
       alert("Usuário ou senha incorretos!!");

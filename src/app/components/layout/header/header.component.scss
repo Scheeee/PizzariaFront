@@ -1,20 +1,54 @@
-a { color: white;
-   } 
-a:hover {
-    color: aqua;
-}
-
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 nav{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    padding: 0%;
-    justify-content: center;
-    gap: 6rem;
-}
-.img{
-
-    height: 100%;
-    width: 10%;
     
+  background-color: #7a0000;
+  height: 10%;
+
+}
+
+a{
+    
+    color:#fff !important;
+    
+}
+.nav-item {
+    font-family: Century Gothic;
+    margin: 0 auto;
+    padding: 1em 2em;
+    text-align: center;
+}
+.nav-item a {
+    color: #FFF;
+    text-decoration: none;
+    font: 20px Century Gothic;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+}
+
+
+/* Top & Bottom Borders Out */
+.topBotomBordersOut a:before, .topBotomBordersOut a:after {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #FFF;
+    content:"";
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.topBotomBordersOut a:before {
+    top: 0px;
+    transform: translateY(10px);
+}
+.topBotomBordersOut a:after {
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+.topBotomBordersOut a:hover:before, .topBotomBordersOut a:hover:after {
+    opacity: 1;
+    transform: translateY(0px);
 }

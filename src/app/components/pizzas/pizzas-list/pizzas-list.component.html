@@ -5,7 +5,7 @@
     </div>
 
     <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
-        <thead> 
+        <thead class="top border border-success-subtle"> 
             <tr>
                 <th>#ID</th>
                 <th>Tamanho:</th>
@@ -15,7 +15,7 @@
             
             </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody class="table-group-divider border border-success-subtle ">
             <tr *ngFor = "let pizzas of lista; let i = index">
                 
                 <th scope="row">{{ pizzas.id }}</th>
