@@ -25,6 +25,8 @@ import { EnderecoDetailsComponent } from './components/endereco/endereco-details
 import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
 import { ProdutosListComponent } from './components/produtos/produtos-list/produtos-list.component';
 import { ProdutosDetailsComponent } from './components/produtos/produtos-details/produtos-details.component';
+import { SaborListComponent } from './components/sabores/sabor-list/sabor-list.component';
+import { SaborDetailsComponent } from './components/sabores/sabor-details/sabor-details.component';
 
 
 
@@ -49,6 +51,8 @@ import { ProdutosDetailsComponent } from './components/produtos/produtos-details
     EnderecoListComponent,
     ProdutosListComponent,
     ProdutosDetailsComponent,
+    SaborListComponent,
+    SaborDetailsComponent,
   
     
   ],

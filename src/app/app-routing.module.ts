@@ -11,6 +11,7 @@ import { EnderecoListComponent } from './components/endereco/endereco-list/ender
 import { ProdutosListComponent } from './components/produtos/produtos-list/produtos-list.component';
 
 import { PedidoDetailsComponent } from './components/pedidos/pedido-details/pedido-details.component';
+import { SaborListComponent } from './components/sabores/sabor-list/sabor-list.component';
 
 const routes: Routes = [
 {path:"", redirectTo: "login", pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: "atendente", component: AtendenteListComponent},
   {path: "endereco", component: EnderecoListComponent}, 
   {path: "produto", component: ProdutosListComponent},
-  {path: "arrumarPedido", component: PedidoDetailsComponent}
+  {path: "arrumarPedido", component: PedidoDetailsComponent},
+  {path: "sabor", component: SaborListComponent}
   
 ]}
 ];

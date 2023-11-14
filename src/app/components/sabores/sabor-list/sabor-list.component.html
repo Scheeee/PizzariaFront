@@ -1,0 +1,56 @@
+<div class="borda">
+    <div class="linha">
+        <h1>Listagem de Sabores</h1>
+        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(saborModal)" >adicionar sabor</button>
+    </div>
+
+    <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
+        <thead class="top border border-success-subtle"> 
+            <tr>
+                <th>#ID</th>
+                <th>Sabores:</th>
+                <th>Ingredientes:</th>
+                <th>Opções:</th>
+            
+            </tr>
+        </thead>
+        <tbody class="table-group-divider border border-success-subtle ">
+            <tr *ngFor = "let sabores of lista; let i = index">
+                
+                <th scope="row">{{ sabores.id }}</th>
+                <th scope="row">{{ sabores.nome }}</th>
+                <th scope="row">{{ sabores.ingredientes }}</th>
+                
+                 
+                        
+                <th *ngIf="!modoLancamento" ><button class="btn btn-outline-warning" (click)="editar(saborModal, sabores, i)">editar</button>
+                <button class="btn btn-outline-danger" (click)="deletar(sabores.id)">excluir</button></th>
+
+                <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento(sabores)">Lançar</button> </td>
+                    
+            </tr>
+        </tbody>
+        
+    </table>
+</div>    
+
+<ng-template #saborModal let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de sabor</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <app-sabor-details (retorno)="addList($event)"></app-sabor-details>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
+
+
+
+
+
+
+
+
