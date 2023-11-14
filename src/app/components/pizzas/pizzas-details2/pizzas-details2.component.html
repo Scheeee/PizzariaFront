@@ -1,8 +1,23 @@
 <div class="row d-flex justify-content-center  ">
     <div d-flex flex-column mb-3>
+      <button type="button" class="btn btn-outline-primary" (click)="lancar(modal1)">adicionar sabor</button> 
+      <tbody>
+            Sabores:
+              
+        <td>
+          <span *ngFor="let sabor of pizza.sabores; let i = index">
+            <th scope="row">{{sabor.id }}</th>
+           <th scope="row"> {{ sabor.nome }}</th>
+            <td> <button type="button" class="btn btn-primary" (click)="excluir(sabor,i)">Excluir</button> </td>
+            <ng-container *ngIf="i !== pizza.sabores.length - 1">, </ng-container>
+          </span>
+        </td>
+           
+        
+    </tbody>
       <div class="p-2  ">
         <label for="formGroupExampleInput" class="form-label">tamanho</label>
-        <input type="text" [(ngModel)]="pizza.tamanho" class="form-control"  name="name" placeholder="Calabresa">
+        <input type="text" [(ngModel)]="pizza.tamanho" class="form-control"  name="name" placeholder="P-M-G-GG">
       </div>
       <br>
       <div class="p-2">
@@ -15,3 +30,18 @@
     </div>
 
   </div>
+
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Sabores</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-sabor-list [modoLancamento]="true" (retorno)="retornoSaborList($event)" ></app-sabor-list>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

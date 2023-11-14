@@ -1,7 +1,7 @@
 <div class="borda">
     <div class="linha">
         <h1>Listagem de pizzas</h1>
-        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(saborModal)" >adicionar sabor</button>
+        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(modal2)" >adicionar sabor</button>
     </div>
 
     <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
@@ -39,20 +39,6 @@
     </table>
 </div>    
 
-<ng-template #saborModal let-modal>
-	<div class="modal-header" data-backdrop="false">
-		<h4 class="modal-title">Cadastro de sabor</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-        <app-pizza-details (retorno)="addList($event)"></app-pizza-details>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
-	</div>
-</ng-template>
-
-
 <ng-template #modal1 let-modal>
 	<div class="modal-header" data-backdrop="false">
 		<h4 class="modal-title">Cadastro de Pizza</h4>
@@ -60,6 +46,19 @@
 	</div>
 	<div class="modal-body">
         <app-pizzas-details2 [pizza]="pizzaEdicao" (retorno)="addList1($event)"></app-pizzas-details2>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
+
+<ng-template #modal2 let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de Pizza</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <app-pizzas-details2  (retorno)="addList1($event)"></app-pizzas-details2>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
