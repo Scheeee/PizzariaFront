@@ -12,7 +12,9 @@
             <ng-container *ngIf="i !== pizza.sabores.length - 1">, </ng-container>
           </span>
         </td>
-           
+        
+       
+                   
         
     </tbody>
       <div class="p-2  ">
@@ -25,7 +27,7 @@
         <input type="number" [(ngModel)]="pizza.valorUnit" class="form-control" name="ingredientes" placeholder="calabresa, queijo...">
       </div>      
       <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary" (click)="salvar()">cadastrar</button>
+        <button type="submit" class="btn btn-primary" (click)="lancamento()">cadastrar</button>
       </div>
     </div>
 

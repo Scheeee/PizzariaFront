@@ -49,12 +49,17 @@ export class PizzasDetails2Component {
     this.pizzaService.save(this.pizza).subscribe({
       next: pizza => { 
         this.retorno.emit(pizza);
+        //this.lancamento(pizza);
       },
       error: erro => { 
         alert('erro na função salvar!');
         console.error(erro);
       }
     });
+  }
+
+  lancamento(){
+    this.retorno.emit(this.pizza);
   }
 
 

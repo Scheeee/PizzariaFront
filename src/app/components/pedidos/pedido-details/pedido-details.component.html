@@ -96,7 +96,20 @@
 </form>
 
 
-
+<ng-template #modalProduto let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Produtos</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-produtos-list [modoLancamento]="true" (retorno)="retornoProdutoList($event)" ></app-produtos-list>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
 
 <ng-template #modal1 let-modal>
     <div class="modal-header">
@@ -169,20 +182,7 @@
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
     </div>
 </ng-template>
-<ng-template #modalProduto let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Produtos</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-       
-        <app-produtos-list [modoLancamento]="true" (retorno)="retornoProdutoList($event)" ></app-produtos-list>
-        
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-    </div>
-</ng-template>
+
 
 
 

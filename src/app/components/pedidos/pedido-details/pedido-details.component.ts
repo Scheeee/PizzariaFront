@@ -17,6 +17,7 @@ import { PedidosService } from 'src/app/services/pedidos-service';
 })
 export class PedidoDetailsComponent {
 
+  @Input() pizza: Pizzas = new Pizzas()
   @Input() pedido: Pedidos = new Pedidos();
   @Input() enderecoEdit: Endereco = new Endereco();
   @Input() modoEdit: boolean = false;
@@ -111,6 +112,8 @@ export class PedidoDetailsComponent {
     this.pedido.valorTotal = pizza.valorUnit + this.pedido.valorTotal;
     console.log(this.pedido.valorTotal);
     this.pedido.pizzas.push(pizza);
+
+    console.log("tá chamando essa função")
     this.modalRef.dismiss();
   }
   retornoProdutoList(produtos: Produtos) {
