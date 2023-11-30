@@ -59,7 +59,7 @@ export class PedidoDetailsComponent {
         this.retorno.emit(pedido);
         },
         error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        alert('erro na função salvar!');
         console.error(erro);
         }
       });
@@ -74,7 +74,7 @@ export class PedidoDetailsComponent {
       this.retorno.emit(pedido);
       },
       error: erro => { // QUANDO DÁ ERRO
-      alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      alert('erro na função editar!');
       console.error(erro);
       }
     });

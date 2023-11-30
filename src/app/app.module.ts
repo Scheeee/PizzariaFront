@@ -9,14 +9,12 @@ import { IndexComponent } from './components/layout/index/index.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { LoginComponent } from './components/sistema/login/login.component';
-import { PizzasListComponent } from './components/pizzas/pizzas-list/pizzas-list.component';
 import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
 import { ClientesListComponent } from './components/clientes/clientes-list/clientes-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { TotaisComponent } from './components/totais/totais.component';
 import { ClientesDetailsComponent } from './components/clientes/clientes-details/clientes-details.component';
-import { PizzaDetailsComponent } from './components/pizzas/pizza-details/pizza-details.component';
 import { PizzasDetails2Component } from './components/pizzas/pizzas-details2/pizzas-details2.component';
 import { PedidoDetailsComponent } from './components/pedidos/pedido-details/pedido-details.component';
 import { AtendenteListComponent } from './components/atendente/atendente-list/atendente-list.component';
@@ -39,12 +37,10 @@ import { LoginService } from './services/login.service';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    PizzasListComponent,
     PedidosListComponent,
     ClientesListComponent,
     TotaisComponent,
     ClientesDetailsComponent,
-    PizzaDetailsComponent,
     PizzasDetails2Component,
     PedidoDetailsComponent,
     AtendenteListComponent,

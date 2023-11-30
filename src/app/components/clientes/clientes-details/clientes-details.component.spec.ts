@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Clientes } from 'src/app/models/clientes';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('ClientesDetailsComponent', () => {
   let component: ClientesDetailsComponent;
@@ -69,5 +69,42 @@ describe('ClientesDetailsComponent', () => {
     expect(component['clienteService'].update).toHaveBeenCalled();
   });
 
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['clienteService'], 'save').and.returnValue(throwError('Erro ao salvar'));
+    component.salvar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+  it('teste erro ao editar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['clienteService'], 'update').and.returnValue(throwError('Erro ao editar'));
+    component.editar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+
+  it('deve emitir evento após salvar', () => {
+    let cliente = new Clientes();
+    cliente.id = 1;
+    cliente.nome = 'ana';
+    cliente.telefone = '45-9999-4533';
+    spyOn(component.retorno, 'emit');
+    spyOn(component['clienteService'], 'save').and.returnValue(of(cliente));
+    component.salvar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(cliente);
+  });
+  
+  it('deve emitir evento após editar', () => {
+    let cliente = new Clientes();
+    cliente.id = 1;
+    cliente.nome = 'ana';
+    cliente.telefone = '45-9999-4533';
+    spyOn(component.retorno, 'emit');
+    spyOn(component['clienteService'], 'update').and.returnValue(of(cliente));
+    component.editar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(cliente);
+  });
+  
 
 });

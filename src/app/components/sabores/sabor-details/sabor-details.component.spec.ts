@@ -4,7 +4,7 @@ import { SaborDetailsComponent } from './sabor-details.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { Sabor } from 'src/app/models/sabor';
 
 describe('SaborDetailsComponent', () => {
@@ -62,6 +62,47 @@ describe('SaborDetailsComponent', () => {
     spyOn(component['saborService'], 'save').and.returnValue(of({}));
     component.salvar();
     expect(component['saborService'].save).toHaveBeenCalled();
+  });
+  it('teste editar() ', () => {
+    spyOn(component['saborService'], 'update').and.returnValue(of({}));
+    component.editar();
+    expect(component['saborService'].update).toHaveBeenCalled();
+  });
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['saborService'], 'save').and.returnValue(throwError('Erro ao salvar'));
+    component.salvar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+  it('teste erro ao editar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['saborService'], 'update').and.returnValue(throwError('Erro ao editar'));
+    component.editar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+
+  it('deve emitir evento após salvar', () => {
+    const sabor = new Sabor();
+    sabor.id = 1;
+    sabor.nome = 'calabresa';
+    sabor.ingredientes = 'calabresa, queijo';
+    spyOn(component.retorno, 'emit');
+    spyOn(component['saborService'], 'save').and.returnValue(of(sabor));
+    component.salvar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(sabor);
+  });
+  
+  it('deve emitir evento após editar', () => {
+    const sabor = new Sabor();
+    sabor.id = 1;
+    sabor.nome = 'calabresa';
+    sabor.ingredientes = 'calabresa, queijo';
+    spyOn(component.retorno, 'emit');
+    spyOn(component['saborService'], 'update').and.returnValue(of(sabor));
+    component.editar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(sabor);
   });
   
 });

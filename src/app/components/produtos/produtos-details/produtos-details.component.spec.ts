@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Produtos } from 'src/app/models/produtos';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('ProdutosDetailsComponent', () => {
   let component: ProdutosDetailsComponent;
@@ -75,4 +75,45 @@ describe('ProdutosDetailsComponent', () => {
     component.editar();
     expect(component['produtoService'].update).toHaveBeenCalled();
   });
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['produtoService'], 'save').and.returnValue(throwError('Erro ao salvar'));
+    component.salvar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+  it('teste erro ao editar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['produtoService'], 'update').and.returnValue(throwError('Erro ao editar'));
+    component.editar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+
+  it('deve emitir evento após salvar', () => {
+    const produto = new Produtos();
+
+    produto.id = 1;
+    produto.detalhes = 'obs';
+    produto.nome = 'coca';
+    produto.valorUnit = 10;
+    spyOn(component.retorno, 'emit');
+    spyOn(component['produtoService'], 'save').and.returnValue(of(produto));
+    component.salvar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(produto);
+  });
+  
+  it('deve emitir evento após editar', () => {
+    const produto = new Produtos();
+
+    produto.id = 1;
+    produto.detalhes = 'obs';
+    produto.nome = 'coca';
+    produto.valorUnit = 10;
+    spyOn(component.retorno, 'emit');
+    spyOn(component['produtoService'], 'update').and.returnValue(of(produto));
+    component.editar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(produto);
+  });
+  
 });

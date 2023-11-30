@@ -21,9 +21,9 @@ export class ProdutosService {
   save(produtos: Produtos): Observable<Produtos> {
     return this.http.post<Produtos>(this.API, produtos);
   }
-  update(pizzas: Produtos, id: Number) : Observable<any>{
+  update(produtos: Produtos, id: Number) : Observable<any>{
     const list = `${this.API}/${id}`;
-    return this.http.put<any>(list, pizzas);
+    return this.http.put<any>(list, produtos);
   }
       
   delete(id: number): Observable<any> {

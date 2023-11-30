@@ -24,5 +24,13 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('renderização', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('small').textContent).toContain('Copyright');
+  });
+
+  
+
 });
 

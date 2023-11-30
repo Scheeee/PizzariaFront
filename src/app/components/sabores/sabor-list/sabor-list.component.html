@@ -1,7 +1,7 @@
 <div class="borda">
     <div class="linha">
         <h1>Listagem de Sabores</h1>
-        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(saborModal)" >adicionar sabor</button>
+        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" name="adicionar" (click)="adicionar(saborModal)" >adicionar sabor</button>
     </div>
 
     <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
@@ -23,8 +23,8 @@
                 
                  
                         
-                <th *ngIf="!modoLancamento" ><button class="btn btn-outline-warning" (click)="editar(saborModal, sabores, i)">editar</button>
-                <button class="btn btn-outline-danger" (click)="deletar(sabores.id)">excluir</button></th>
+                <th *ngIf="!modoLancamento" ><button class="btn btn-outline-warning"  name="editar" (click)="editar(saborModal2, sabores, i)">editar</button>
+                <button class="btn btn-outline-danger" name="deletar" (click)="deletar(sabores.id)">excluir</button></th>
 
                 <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento(sabores)">Lançar</button> </td>
                     
@@ -40,13 +40,24 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-        <app-sabor-details (retorno)="addList($event)"></app-sabor-details>
+        <app-sabor-details [sabor]=saborEdicao  [modoEdit]="false"  (retorno)="addList($event)"></app-sabor-details>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
 	</div>
 </ng-template>
-
+<ng-template #saborModal2 let-modal>
+	<div class="modal-header" data-backdrop="false">
+		<h4 class="modal-title">Cadastro de sabor</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <app-sabor-details [sabor]=saborEdicao  [modoEdit]="true"  (retorno)="addList($event)"></app-sabor-details>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
+	</div>
+</ng-template>
 
 
 

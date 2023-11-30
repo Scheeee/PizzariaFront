@@ -6,7 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Clientes } from 'src/app/models/clientes';
 import { Endereco } from 'src/app/models/endereco';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('EnderecoDetailsComponent', () => {
   let component: EnderecoDetailsComponent;
@@ -77,7 +77,6 @@ describe('EnderecoDetailsComponent', () => {
     expect(elemento.nativeElement.ngModel).not.toBe(null);
   });
   
-  
   it('teste salvar() ', () => {
     spyOn(component['enderecoService'], 'save').and.returnValue(of({}));
     component.salvar();
@@ -87,5 +86,58 @@ describe('EnderecoDetailsComponent', () => {
     spyOn(component['enderecoService'], 'update').and.returnValue(of({}));
     component.editar();
     expect(component['enderecoService'].update).toHaveBeenCalled();
+  });
+
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['enderecoService'], 'save').and.returnValue(throwError('Erro ao salvar'));
+    component.salvar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+  it('teste erro ao editar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['enderecoService'], 'update').and.returnValue(throwError('Erro ao editar'));
+    component.editar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função editar!');
+  });
+  
+
+  it('emitir evento após salvar', () => {
+    const cliente = new Clientes();
+    const endereco = new Endereco();
+
+    cliente.id = 1;
+    cliente.nome = 'ana';
+    cliente.telefone = '45-9999-4533';
+    
+    endereco.rua= 'rua';
+    endereco.complemento = 'esquina';
+    endereco.id = 1;
+    endereco.numero = '123';
+    endereco.cliente = cliente;
+    spyOn(component.retorno, 'emit');
+    spyOn(component['enderecoService'], 'save').and.returnValue(of(endereco));
+    component.salvar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(endereco);
+  });
+  
+  it('emitir evento após editar', () => {
+    const cliente = new Clientes();
+    const endereco = new Endereco();
+
+    cliente.id = 1;
+    cliente.nome = 'ana';
+    cliente.telefone = '45-9999-4533';
+    
+    endereco.rua= 'rua';
+    endereco.complemento = 'esquina';
+    endereco.id = 1;
+    endereco.numero = '123';
+    endereco.cliente = cliente;
+    spyOn(component.retorno, 'emit');
+    spyOn(component['enderecoService'], 'update').and.returnValue(of(endereco));
+    component.editar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(endereco);
   });
 });

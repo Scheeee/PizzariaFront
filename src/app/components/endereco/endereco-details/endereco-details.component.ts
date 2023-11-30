@@ -41,7 +41,7 @@ export class EnderecoDetailsComponent {
         
       },
       error: erro => { // QUANDO DÁ ERRO
-        alert('Observe o erro no console!');
+        alert('erro na função salvar!');
         console.error(erro);
       }
     });;
@@ -63,7 +63,7 @@ export class EnderecoDetailsComponent {
         
       },
       error: erro => { // QUANDO DÁ ERRO
-        alert('Observe o erro no console!');
+        alert('erro na função editar!');
         console.error(erro);
       }
     });;

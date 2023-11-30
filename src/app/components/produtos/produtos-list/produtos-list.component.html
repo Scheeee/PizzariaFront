@@ -1,7 +1,7 @@
 <div class="borda">
     <div class="linha">
         <h1>Listagem de produtos</h1>
-        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(modal1)" >adicionar produto</button>
+        <button id="btn"type="button"class="btn btn-success btn-lg d-flex justify-content-center" name="adicionar" (click)="adicionar(modal1)" >adicionar produto</button>
     </div>
 
     <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
@@ -23,10 +23,10 @@
                 <th scope="row">{{ produtos.detalhes }}</th>
                 <th scope="row">{{ produtos.valorUnit }}</th>
                         
-                <th *ngIf="!modoLancamento" ><button class="btn btn-outline-warning" (click)="editar(modal2, produtos, i)">editar</button>
-                <button class="btn btn-outline-danger" (click)="deletar(produtos.id)">excluir</button></th>
+                <th *ngIf="!modoLancamento" ><button class="btn btn-outline-warning" name="editar" (click)="editar(modal2, produtos, i)">editar</button>
+                <button class="btn btn-outline-danger"  name="deletar" (click)="deletar(produtos.id)">excluir</button></th>
 
-                <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento(produtos)">Lançar</button> </td>
+                <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" name="lancamento" (click)="lancamento(produtos)">Lançar</button> </td>
                     
             </tr>
         </tbody>

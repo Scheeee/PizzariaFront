@@ -4,7 +4,7 @@ import { AtendenteDetailsComponent } from './atendente-details.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Atendente } from 'src/app/models/atendente';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 describe('AtendenteDetailsComponent', () => {
@@ -78,4 +78,43 @@ describe('AtendenteDetailsComponent', () => {
     component.editar();
     expect(component['atendenteService'].update).toHaveBeenCalled();
   });
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['atendenteService'], 'save').and.returnValue(throwError('Erro ao salvar'));
+    component.salvar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+  it('teste erro ao editar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['atendenteService'], 'update').and.returnValue(throwError('Erro ao editar'));
+    component.editar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+  
+
+  it('deve emitir evento após salvar', () => {
+    let atendente = new Atendente();
+    atendente.id = 1;
+    atendente.username = 'admin';
+    atendente.password = 'admin';
+    atendente.role = 'ADMIN';
+    spyOn(component.retorno, 'emit');
+    spyOn(component['atendenteService'], 'save').and.returnValue(of(atendente));
+    component.salvar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(atendente);
+  });
+  
+  it('deve emitir evento após editar', () => {
+    let atendente = new Atendente();
+    atendente.id = 1;
+    atendente.username = 'admin';
+    atendente.password = 'admin';
+    atendente.role = 'ADMIN';
+    spyOn(component.retorno, 'emit');
+    spyOn(component['atendenteService'], 'update').and.returnValue(of(atendente));
+    component.editar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(atendente);
+  });
+  
 });

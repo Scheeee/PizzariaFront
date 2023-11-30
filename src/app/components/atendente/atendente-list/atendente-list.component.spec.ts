@@ -73,11 +73,5 @@ describe('AtendenteListComponent', () => {
     editButton.click();
     expect(component.deletar).toHaveBeenCalled();
   });
-
-  xit('teste do botão lançamento', () => {
-    spyOn(component, 'lancamento');
-    const editButton = fixture.debugElement.nativeElement.querySelector('button[name="lancamento"]'); 
-    editButton.click();
-    expect(component.lancamento).toHaveBeenCalled();
-  });
+  
 });

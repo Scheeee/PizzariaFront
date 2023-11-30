@@ -4,7 +4,7 @@ import { PizzasDetails2Component } from './pizzas-details2.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { Pizzas } from 'src/app/models/pizzas';
 import { Sabor } from 'src/app/models/sabor';
 
@@ -70,8 +70,36 @@ describe('PizzasDetails2Component', () => {
     expect(elementoNaTabela).not.toBeNull();
   });
 
-  
-  
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['pizzaService'], 'save').and.returnValue(throwError('Erro ao salvar'));
+    component.salvar();
+    expect(window.alert).toHaveBeenCalledWith('erro na função salvar!');
+  });
+ 
+  it('deve emitir evento após salvar', () => {
+    const pizza = new Pizzas();
 
+    let sabor = new Sabor();
+
+    const sabores : Sabor[] = [];
+
+    sabor.id= 1;
+    sabor.nome= 'calabresa';
+    sabor.ingredientes= 'calabresa...';
+    sabores.push(sabor);
+
+    pizza.id = 1;
+    pizza.tamanho = 'P';
+    pizza.sabores = sabores;
+    pizza.valorUnit = 10
+    spyOn(component.retorno, 'emit');
+    spyOn(component['pizzaService'], 'save').and.returnValue(of(pizza));
+    component.salvar();
+    expect(component.retorno.emit).toHaveBeenCalledWith(pizza);
+  });
+  
+  
+  
  
 });

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './components/layout/index/index.component';
 import { ClientesListComponent } from './components/clientes/clientes-list/clientes-list.component';
 import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
-import { PizzasListComponent } from './components/pizzas/pizzas-list/pizzas-list.component';
 import { TotaisComponent } from './components/totais/totais.component';
 import { AtendenteListComponent } from './components/atendente/atendente-list/atendente-list.component';
 import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
@@ -20,7 +19,6 @@ const routes: Routes = [
 {path: "pizzaria", component: IndexComponent,canActivate:[rotaguardGuard], children:[
   {path:"clientes", component: ClientesListComponent},
   {path: "pedidos", component: PedidosListComponent},
-  {path: "pizzas", component: PizzasListComponent},
   {path: "total", component: TotaisComponent},
   {path: "atendente", component: AtendenteListComponent},
   {path: "endereco", component: EnderecoListComponent}, 

@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Total } from 'src/app/models/total';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 describe('TotaisComponent', () => {
   let component: TotaisComponent;
@@ -60,6 +60,13 @@ describe('TotaisComponent', () => {
     spyOn(component['pedidosService'], 'totais').and.returnValue(new Observable<Total>);
     component.totais();
     expect(component['pedidosService'].totais).toHaveBeenCalled();
+  });
+
+  it('teste erro ao salvar', () => {
+    spyOn(window, 'alert'); 
+    spyOn(component['pedidosService'], 'totais').and.returnValue(throwError('Algo deu errado'));
+    component.totais();
+    expect(window.alert).toHaveBeenCalledWith('Algo deu errado!');
   });
   
 });

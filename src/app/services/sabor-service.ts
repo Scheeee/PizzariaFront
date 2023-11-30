@@ -23,6 +23,10 @@ export class SaborService{
   save(sabor: Sabor): Observable<any> {
     return this.http.post<any>(this.API, sabor);
   }
+  update(sabor: Sabor, id: Number) : Observable<any>{
+    const list = `${this.API}/${id}`;
+    return this.http.put<any>(list, sabor);
+  }
   
   delete(id: number): Observable<any> {
 
