@@ -9,7 +9,7 @@
                 <button (click)="listNome()" class="search_icon btn" data-bs-toggle="button"><i class="fas fa-search"></i></button>
             </div>
         </div>
-        <button id="btn"type="button"class="btn btn-success btn-lg" (click)="adicionar(clienteModal)"  >adicionar pessoa</button>
+        <button id="btn"type="button"class="btn btn-success btn-lg" name="adicionar" (click)="adicionar(clienteModal)"  >adicionar pessoa</button>
     </div>
     
     
@@ -31,10 +31,10 @@
                 <th>{{ cliente.nome }}</th>
                 <th>{{cliente.telefone }}</th>
             
-                <th *ngIf="!modoAdd"><button class="btn btn-outline-warning" (click)="editar(clienteModal2, cliente, i)">editar</button><button class="btn btn-outline-danger" (click)="deletar(cliente.id)">deletar</button>
+                <th *ngIf="!modoAdd"><button class="btn btn-outline-warning" name="editar" (click)="editar(clienteModal2, cliente, i)">editar</button><button class="btn btn-outline-danger" name="deletar" (click)="deletar(cliente.id)">deletar</button>
 
 
-                <td *ngIf="modoAdd" > <button type="button" class="btn btn-primary" (click)="lancamento(cliente)">Lançar</button> </td>
+                <td *ngIf="modoAdd" > <button type="button" class="btn btn-primary" name="lancamento" (click)="lancamento(cliente)">Lançar</button> </td>
                     
             </tr>
         </tbody>

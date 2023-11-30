@@ -7,6 +7,6 @@ export class Clientes {
     nome!: string;
     telefone!: string;
     endereco!: Endereco;
-    atendente!: Atendente;
+   
     
 }

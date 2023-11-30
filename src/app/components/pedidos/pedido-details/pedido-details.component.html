@@ -23,8 +23,8 @@
     <button type="button" class="btn btn-outline-primary" (click)="lancar(modal2)">inserir cliente</button>
     <button type="button" class="btn btn-outline-primary" (click)="lancar(modal3)">inserir atendente</button>
     </div>
-    <p *ngIf = "pedido.atendente != null">Atendente: {{pedido.atendente.nome}}</p>
-    <p *ngIf = "pedido.cliente != null">Cliente:</p>
+    <p name="atendente" *ngIf = "pedido.atendente != null">Atendente: {{pedido.atendente.username}}</p>
+    <p name="cliente" *ngIf = "pedido.cliente != null">Cliente: {{pedido.cliente.nome}}</p>
     <table *ngIf = "pedido.cliente != null" class="table table-striped">
         
         <thead>

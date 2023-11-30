@@ -25,6 +25,8 @@ export class PizzasDetails2Component {
   pedidosService = inject(PedidosService); 
   pizzaService = inject(PizzasServices);
 
+  sabores: number = 1;
+
   constructor(){}
 
   retornoSaborList(sabor: Sabor) {
@@ -59,9 +61,63 @@ export class PizzasDetails2Component {
   }
 
   lancamento(){
-    this.retorno.emit(this.pizza);
+
+    if(this.pizza.sabores.length > this.sabores){
+      alert("A pizza" +this.pizza.tamanho + "pode conter apenas" +this.sabores+ "sabor!");
+    }
+    else if(this.pizza.sabores.length > 0){
+      if(this.pizza.tamanho == null){
+      this.pizza.tamanho = "P";
+      this.pizza.valorUnit = 20;
+      }
+    
+      this.retorno.emit(this.pizza);
+    }
+    else{
+      alert("Escolha o tamanho e o sabor da pizza!");
+    }
   }
 
+  onChange(event: any) {
+    const selectedValue = event.target.value;
+  
+    switch (selectedValue) {
+      case 'P':
+        this.pizza.tamanho = "P";
+        this.pizza.valorUnit = 20;
+
+        if(this.pizza.sabores.length > 1){
+          alert("A pizza P pode conter apenas 1 sabor!");
+        }
+        this.sabores = 1;
+        break;
+      case 'M':
+        this.pizza.tamanho = "M";
+        this.pizza.valorUnit = 25;
+        if(this.pizza.sabores.length > 2){
+          alert("A pizza M pode conter apenas 2 sabores!");
+        }
+        this.sabores = 2;
+        break;
+      case 'G':
+        this.pizza.tamanho = "G";
+        this.pizza.valorUnit = 30;
+        if(this.pizza.sabores.length > 3){
+          alert("A pizza G pode conter apenas 3 sabores!");
+        }
+        this.sabores = 3;
+        break;
+      case 'GG':
+        this.pizza.tamanho = "GG";
+        if(this.pizza.sabores.length > 4){
+          alert("A pizza GG pode conter apenas 4 sabores!");
+        }
+        this.pizza.valorUnit = 35;
+        this.sabores = 4;
+        break;
+      
+    }
+  }
 
   
 

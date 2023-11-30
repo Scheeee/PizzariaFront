@@ -2,7 +2,15 @@
     <div d-flex flex-column mb-3>
       <div class="p-2  ">
         <label for="formGroupExampleInput" class="form-label">Nome</label>
-        <input type="text" [(ngModel)]="atendente.nome" class="form-control"  name="name" placeholder="Scheligan">
+        <input type="text" [(ngModel)]="atendente.username" class="form-control"  name="name" placeholder="Scheligan">
+      </div>
+      <div class="p-2  ">
+        <label for="formGroupExampleInput" class="form-label">Senha</label>
+        <input type="text" [(ngModel)]="atendente.password" class="form-control"  name="password" placeholder="senha">
+      </div>
+      <div class="p-2  ">
+        <label for="formGroupExampleInput" class="form-label">Role</label>
+        <input type="text" [(ngModel)]="atendente.role" class="form-control"  name="role" placeholder="role">
       </div>
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary" *ngIf="modoEdit == false"(click)="salvar()">cadastrar</button>

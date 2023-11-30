@@ -26,10 +26,8 @@ export class SaborService{
   
   delete(id: number): Observable<any> {
 
-    let params =new HttpParams()
-    .set('id', id.toString());
-
-    return this.http.delete<any>(this.API, {params: params});
+    const list = `${this.API}/${id}`;
+    return this.http.delete<any>(list);
   }
 
 }

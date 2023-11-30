@@ -1,5 +1,9 @@
 export class Atendente {
 
     id!: number;
-    nome!: string;
+    username!: string;
+    password!: string;
+    role!: string;
+    token!: string;
+    
 }

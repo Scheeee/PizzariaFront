@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './components/layout/index/index.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/sistema/login/login.component';
 import { PizzasListComponent } from './components/pizzas/pizzas-list/pizzas-list.component';
 import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
 import { ClientesListComponent } from './components/clientes/clientes-list/clientes-list.component';
@@ -27,6 +27,8 @@ import { ProdutosListComponent } from './components/produtos/produtos-list/produ
 import { ProdutosDetailsComponent } from './components/produtos/produtos-details/produtos-details.component';
 import { SaborListComponent } from './components/sabores/sabor-list/sabor-list.component';
 import { SaborDetailsComponent } from './components/sabores/sabor-details/sabor-details.component';
+import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
+import { LoginService } from './services/login.service';
 
 
 
@@ -63,7 +65,10 @@ import { SaborDetailsComponent } from './components/sabores/sabor-details/sabor-
     HttpClientModule, DatePipe
     
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

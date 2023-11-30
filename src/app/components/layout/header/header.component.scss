@@ -27,8 +27,6 @@ a{
     z-index: 0;
 }
 
-
-/* Top & Bottom Borders Out */
 .topBotomBordersOut a:before, .topBotomBordersOut a:after {
     position: absolute;
     left: 0px;
@@ -52,3 +50,11 @@ a{
     opacity: 1;
     transform: translateY(0px);
 }
+
+.navbar-nav li {
+    margin-right: 15px; /* Ajuste a margem conforme necessário */
+  }
+  
+  .navbar-nav img {
+    margin-right: 10px; /* Ajuste a margem conforme necessário */
+  }

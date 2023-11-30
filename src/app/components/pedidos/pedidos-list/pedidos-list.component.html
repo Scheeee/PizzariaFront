@@ -1,7 +1,7 @@
 <div class="borda">
     <div class="linha">
         <h1>Lista de pedidos</h1>
-        <button id="btn" type="button"class="btn btn-success btn-lg " (click)="adicionar(modal1)"  >adicionar pedido</button>
+        <button id="btn" type="button"class="btn btn-success btn-lg " name="adicionar" (click)="adicionar(modal1)"  >adicionar pedido</button>
     </div>
     <select class="selected"  (change)="onChange($event)">
         <option value="2" selected> Todos os Pedidos</option>
@@ -39,11 +39,11 @@
                 <th>{{pedidos.pizzas.length}}</th>
                 <th>{{pedidos.valorTotal}}
                 <th class="btns">
-                    <button class="btn btn-outline-warning btn-sm" (click)="editar(modal2, pedidos, i)">Editar</button>
-                    <button class="btn btn-outline-danger btn-sm" (click)="deletar(pedidos.id)">Deletar</button>
-                    <button class="btn btn-outline-secondary btn-sm" (click)="finalizar(pedidos, pedidos.id)">Finalizar</button>
-                    <button class="btn btn-outline-secondary btn-sm" (click)="comanda(pedidos.id, pedidos.atendente.id)">Gerar comanda</button>
-                    <button class="btn btn-outline-secondary btn-sm" (click)="cancelar(pedidos, pedidos.id)">Cancelar</button>   
+                    <button class="btn btn-outline-warning btn-sm" name="editar" (click)="editar(modal2, pedidos, i)">Editar</button>
+                    <button class="btn btn-outline-danger btn-sm" name="deletar" (click)="deletar(pedidos.id)">Deletar</button>
+                    <button class="btn btn-outline-secondary btn-sm" name="finalizar" (click)="finalizar(pedidos, pedidos.id)">Finalizar</button>
+                    <button class="btn btn-outline-secondary btn-sm" name="comanda" (click)="comanda(pedidos.id, pedidos.atendente.id)">Gerar comanda</button>
+                    <button class="btn btn-outline-secondary btn-sm"  name="cancelar" (click)="cancelar(pedidos, pedidos.id)">Cancelar</button>   
                 </th>
                     
             </tr>

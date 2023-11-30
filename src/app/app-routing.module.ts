@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
 import { IndexComponent } from './components/layout/index/index.component';
 import { ClientesListComponent } from './components/clientes/clientes-list/clientes-list.component';
 import { PedidosListComponent } from './components/pedidos/pedidos-list/pedidos-list.component';
@@ -12,11 +11,13 @@ import { ProdutosListComponent } from './components/produtos/produtos-list/produ
 
 import { PedidoDetailsComponent } from './components/pedidos/pedido-details/pedido-details.component';
 import { SaborListComponent } from './components/sabores/sabor-list/sabor-list.component';
+import { rotaguardGuard } from './guards/rotaguard.guard';
+import { LoginComponent } from './components/sistema/login/login.component';
 
 const routes: Routes = [
 {path:"", redirectTo: "login", pathMatch: 'full'},
 {path: "login", component: LoginComponent},
-{path: "pizzaria", component: IndexComponent, children:[
+{path: "pizzaria", component: IndexComponent,canActivate:[rotaguardGuard], children:[
   {path:"clientes", component: ClientesListComponent},
   {path: "pedidos", component: PedidosListComponent},
   {path: "pizzas", component: PizzasListComponent},
